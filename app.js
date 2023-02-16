@@ -4,7 +4,7 @@ const inboxRouter = require("./controllers/inbox");
 const mongoose = require("mongoose");
 const logger = require("./utils/logger");
 const config = require("./utils/config");
-
+const cors = require("cors");
 mongoose.set("strictQuery", false);
 //connecting a base data
 try {
@@ -15,7 +15,8 @@ try {
 }
 
 // middlewares
-
+app.use(cors());
+app.use(express.static("build"));
 app.use(express.json());
 app.use("/api/inbox", inboxRouter);
 
